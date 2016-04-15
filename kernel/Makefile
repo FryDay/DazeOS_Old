@@ -57,8 +57,8 @@ dazeos.kernel: $(OBJ_LINK_LIST) $(ARCHDIR)/linker.ld
 %.o: %.c
 	$(CC) -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
 
-%.o: %.S
-	$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
+%.o: %.asm
+	$(AS) $< -o $@ $(ASFLAGS)
 
 clean:
 	rm -f dazeos.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o

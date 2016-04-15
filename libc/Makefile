@@ -20,7 +20,7 @@ LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_dazeos_kernel
 ARCHDIR:=arch/$(HOSTARCH)
 
 include $(ARCHDIR)/make.config
- 
+
 CFLAGS:=$(CFLAGS) $(ARCH_CFLAGS)
 CPPFLAGS:=$(CPPFLAGS) $(ARCH_CPPFLAGS)
 LIBK_CFLAGS:=$(LIBK_CFLAGS) $(KERNEL_ARCH_CFLAGS)
@@ -65,14 +65,14 @@ libk.a: $(LIBK_OBJS)
 %.o: %.c
 	$(CC) -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
 
-%.o: %.S
-	$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
+%.o: %.asm
+	$(AS) $< -o $@ $(ASFLAGS)
 
 %.libk.o: %.c
 	$(CC) -c $< -o $@ -std=gnu11 $(LIBK_CFLAGS) $(LIBK_CPPFLAGS)
 
-%.libk.o: %.S
-	$(CC) -c $< -o $@ $(LIBK_CFLAGS) $(LIBK_CPPFLAGS)
+%.libk.o: %.asm
+	$(AS) $< -o $@ $(ASFLAGS)
 
 clean:
 	rm -f $(BINARIES) $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o
