@@ -13,7 +13,11 @@ void kernel_init(void)
 
 void kernel_main(void)
 {
-	printf("Welcome to ");
-	terminal_setcolor(make_color(COLOR_GREEN, COLOR_BLACK));
-	printf("DazeOS\n");
+	for (int i = 0; i < 10; i++)
+	{
+		terminal_setcolor(make_color(COLOR_LIGHT_GREY, COLOR_BLACK));
+		printf("Welcome to ");
+		terminal_setcolor(make_color(COLOR_GREEN, COLOR_BLACK));
+		printf("DazeOS\n");
+	}
 }
