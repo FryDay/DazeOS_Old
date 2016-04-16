@@ -23,6 +23,11 @@ stack_top:
 section .text
 global _start
 _start:
+	; Enter protected mode.
+	mov eax, cr0
+	or eax, 1
+	mov cr0, eax
+
 	mov esp, stack_top
 
 	; Initialize the kernel.
